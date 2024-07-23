@@ -54,21 +54,21 @@ The blaserlab linux server can be configured to use gnu screen as a window/sessi
 * Let's say you want to resume a screen session that is still active somewhere.
 
     ```bash
-    $ screen -r new_session_name
+    $ screen -x new_session_name
     ```
-The screen session will automatically display 6 windows as tabs along the bottom.  You switch between these using a custom escape combination followed by numbers 1-6.  The custom escape combination is 
+The screen session will automatically display 5 windows as tabs along the bottom.  You switch between these using a custom leader key combination followed by numbers 1-5.  The custom leader is 
 
-* control backslash <ctrl-\>
+* control backslash
 
 If this is inconvenient you can change it by editing ~/dotfiles/screen/.screenrc
 
 You can create a new window with
 
-* <ctrl-\><c>
+* leader c
 
 You can enter screen command mode with 
 
-* <ctrl-\><:>
+* leader :
 
 You can kill a window by entering *kill* in the command mode box
 
@@ -77,7 +77,7 @@ You can kill a window by entering *kill* in the command mode box
 
 * toggle between columns
     
-    * <space>
+    * space
 
 * go up the directory tree
 
@@ -86,7 +86,7 @@ You can kill a window by entering *kill* in the command mode box
 * go down the directory tree
 
     * l
-    * <enter>
+    * enter
 
 * go up the screen
 
@@ -104,6 +104,14 @@ You can kill a window by entering *kill* in the command mode box
 | gh   | go to home directory                               |
 | gw   | go to workspace        |
 | gx   | go to x-drive                               |
+| yy   | yank (copy) one file                              |
+| p   | put (paste) file(s)                              |
+| dd  | delete one file                              |
+| v  | enter visual select mode                               |
+| y  | yank multiple selected files                               |
+| d  | delete multiple selected files                           |
+| cw  | rename file                           |
+| C  | duplicate (clone) file|
 
 * Other vifm commands are available.  See https://vifm.info/manual.shtml.  Access command mode with :
 
@@ -111,10 +119,10 @@ You can kill a window by entering *kill* in the command mode box
 
 | Shortcut | Result                                                                  |
 | --- | ----------------------------------------------------------------------- |
-| <space>ww  | write the file                               |
-| <space>qq  | quit                               |
-| <space>bv   | open a terminal        |
-| <space>vv   | open a new vim window and select a file to edit using vifm                               |
+| space ww  | write the file                               |
+| space qq  | quit                               |
+| space bv   | open a terminal        |
+| space vv   | open a new vim window and select a file to edit using vifm                               |
 
 4. **bash aliases and customizations**.  Bash is the shell program that we use to interact with all of the other applications.  Much of the rest of this document lists "commands" which really are applications that you start from the command line which is bash.
 
