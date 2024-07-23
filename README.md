@@ -6,7 +6,7 @@
 
 | No. | Topic                                                                   |
 | --- | ----------------------------------------------------------------------- |
-| 0   | [**User information**](#user-information)                               |
+| 0   | [**Blaserlab Customization**](#blaserlab-customization)                               |
 | 1   | [**User information**](#user-information)                               |
 | 2   | [**File and directory commands**](#file-and-directory-commands)         |
 | 3   | [**File permissions**](#file-permissions)                               |
@@ -21,6 +21,124 @@
 | 12  | [**Kill Command**](#Kill-Command)                                       |
 | 13  | [**History Command**](#History-Command)                                 |
 | 14  | [**Curl Command**](#Curl-Command)                                       |
+
+### Blaserlab Customization
+
+The blaserlab linux server can be configured to use gnu screen as a window/session manager and vifm as a terminal file manager.  Vim is the preferred text editor.  Custom shortcuts, escape keys, and aliases have been defined by the appropriate configuration files for these applications.  The following lists some of the more useful  current items.  Users may modify as desired.
+
+1. **screen** is used to manage linux sessions as independent processes on the server.  These sessions will persist until killed despite network disconnection or closing a terminal window.  Below are some commonly-used coommands and expected output
+
+* list active screen sessions
+
+    ```bash
+    $ screen -ls
+    There is a screen on:
+            2272190.local   (07/23/2024 09:13:26 AM)        (Attached)
+    1 Socket in /run/screen/S-blas02. 
+    ```
+*  kill a screen session
+
+    ```bash
+    $ kill <process id, e.g. 2272190>
+    ```
+* start a new screen session
+
+    ```bash
+    $ screen -S new_session_name
+    ```
+* Let's say you log out and later want to resume a screen session
+
+    ```bash
+    $ screen -r new_session_name
+    ```
+* Let's say you want to resume a screen session that is still active somewhere.
+
+    ```bash
+    $ screen -r new_session_name
+    ```
+The screen session will automatically display 6 windows as tabs along the bottom.  You switch between these using a custom escape combination followed by numbers 1-6.  The custom escape combination is 
+
+* control backslash <ctrl-\>
+
+If this is inconvenient you can change it by editing ~/dotfiles/screen/.screenrc
+
+You can create a new window with
+
+* <ctrl-\><c>
+
+You can enter screen command mode with 
+
+* <ctrl-\><:>
+
+You can kill a window by entering *kill* in the command mode box
+
+
+2.  **vifm** is a terminal-based file manager.  It is ideal for navigating through directories and moving files around withough so much typing in the command line.  It is laid out in a standard two-column view.
+
+* toggle between columns
+    
+    * <space>
+
+* go up the directory tree
+
+    * h
+
+* go down the directory tree
+
+    * l
+    * <enter>
+
+* go up the screen
+
+    * j
+
+* go down the screen 
+
+    * k
+
+* There are built-in and custom shortcuts.  Just type these in.
+
+| Shortcut | Result                                                                  |
+| --- | ----------------------------------------------------------------------- |
+| za   | toggle hidden files in and out of view                               |
+| gh   | go to home directory                               |
+| gw   | go to workspace        |
+| gx   | go to x-drive                               |
+
+* Other vifm commands are available.  See https://vifm.info/manual.shtml.  Access command mode with :
+
+3.  **Vim**.  Text editor of choice. Most important vim commands are listed in [**Vi/Vim-commands**](#vi/vim-commands).  From commmand mode you can use the following shortcuts.
+
+| Shortcut | Result                                                                  |
+| --- | ----------------------------------------------------------------------- |
+| <space>ww  | write the file                               |
+| <space>qq  | quit                               |
+| <space>bv   | open a terminal        |
+| <space>vv   | open a new vim window and select a file to edit using vifm                               |
+
+4. **bash aliases and customizations**.  Bash is the shell program that we use to interact with all of the other applications.  Much of the rest of this document lists "commands" which really are applications that you start from the command line which is bash.
+
+Bash allows for the creation of aliases to reduce typing and/or redirect one command to another.  The list of these can be found in dotfiles/bash/.bash_aliases.  Some of the most noteworthy are:
+
+
+| Alias | Result                                                                  |
+| --- | ----------------------------------------------------------------------- |
+| ..  | go up one directory in the tree                              |
+| trash  | move a file or directory (recursively) to the trash directory)                              |
+| ll   | list all directory contents in long form        |
+
+You can list all aliases by running
+
+    ```bash
+    $ alias
+    ```
+
+ Also:  the common *cd* command has been replaced by something called zoxide.  This is an advanced way to change directories.  It works essentially the same as gnu cd but has better autocomplete behavior and has been engineered to run *pwd* and *ls* after changing directories to show you what is there.  Additionally you can run
+
+    ```bash
+    $ cdi
+    ```
+ To enter an interactive menu to quickly jump to frequently-used directories.
 
 ### User Information
 
